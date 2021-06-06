@@ -1,0 +1,99 @@
+--Layout--
+- - - - - - - - - - - - -
+- ' ' ' ' ' ' ' ' ' ' ' -
+- ' ' ' ' ' #8 ' ' ' ' ' -
+- ' ' ' ' ' ' ' ' ' ' ' -
+- ' ' ' ' ' ' ' ' ' ' ' -
+- ' ' ' ' ' ' ' ' ' ' ' -
+- - - ' ' ' #7 ' ' ' - - -
+. . . - ' ' ' ' ' - . . .
+. . . - ' ' ' ' ' - . . .
+. . . - ' ' ' ' ' - . . .
+. . . - ' ' - ' ' - . . .
+. . . - ' ' - ' ' - . . .
+. . - ' ' ' - ' ' ' - . .
+. . - ' ' ' ' ' ' ' - . .
+. . - ' ' ' ' ' ' ' - . .
+. . - ' ' ' ' ' ' ' - . .
+. . - ' ' ' #5 ' ' ' - . .
+. . - ' ' ' - ' ' ' - . .
+. . . - ' #4 - #3 ' - . . .
+. . . - ' ' - ' ' - . . .
+. . . - ' ' #2 ' ' - . . .
+. . . - ' ' ' ' ' - . . .
+. . . - ' ' ' ' ' - . . .
+. . . . - ' ' ' - . . . .
+. . . . - ' #6 ' - . . . .
+- - - - - ' ' ' - - - - -
+- ' ' ' ' ' ' ' ' ' ' ' -
+- ' ' ' ' ' #1 ' ' ' ' ' -
+- ' ' ' ' ' ' ' ' ' ' ' -
+- ' ' ' ' ' ' ' ' ' ' ' -
+- - - - - ' ' ' - - - - -
+. . . . - ' X ' - . . . .
+. . . . - - - - - . . . .
+--EndLayout--
+
+--Params--
+Make Ceiling is true
+Fancy Lights is false
+--EndParams--
+
+--Ids--
+1 is {
+    "model": "podium",
+    "floor": true,
+    "rotation": 0,
+    "clickable": true,
+    "description": "test"
+};
+2 is {
+    "model": "painting",
+    "floor": true,
+    "source": "apple",
+    "rotation": 0,
+    "clickable": true,
+    "description": "apple"
+};
+3 is {
+    "model": "painting",
+    "floor": true,
+    "source": "apple",
+    "rotation": 90,
+    "clickable": true,
+    "description": "apple"
+};
+4 is {
+    "model": "painting",
+    "floor": true,
+    "source": "apple",
+    "rotation": -90,
+    "clickable": true,
+    "description": "apple"
+};
+5 is {
+    "model": "painting",
+    "floor": true,
+    "source": "apple",
+    "rotation": 180,
+    "clickable": true,
+    "description": "special"
+};
+6 is {
+    "model": "lantern",
+    "floor": true,
+    "rotation": 0
+};
+7 is {
+    "model": "lantern",
+    "floor": true,
+    "rotation": 0
+};
+8 is {
+    "model": "podium",
+    "floor": true,
+    "rotation": 0,
+    "clickable": true,
+    "description": "thanks"
+};
+--EndIds--

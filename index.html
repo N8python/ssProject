@@ -21,6 +21,14 @@
         <br>
         <button id="backButton">Back</button>
     </div>
+    <button id="help" style="position:absolute;z-index:30;left:97.65%;top:5%;transform: translate(-50%, -50%);font-size:32px;padding-left:16px;padding-right:16px;">?</button>
+    <div id="helpWindow" style="position:absolute;z-index:30;left:50%;top:40%;transform:translate(-50%, -50%);background-color:white;border:2px solid black;width:750px;height:400px;overflow:scroll;padding:8px;display:none;">
+        <h1>Help:</h1>
+        <p>Use WASD to move. Use the mouse to look around. Right click to read podiums and inspect artifacts.</p>
+        <p>Sensitivity: <input id="sensitivitySlider" class="pcSlider" type="range" min="0.25" max="1" step="0.01" value="1"></p>
+        <p>Fancy Lights (For Powerful PC ONLY): <input id="fancyLight" type="checkbox" value="off"></p>
+        <p>Click the game screen to leave this window.</p>
+    </div>
     <script src="constants.js"></script>
     <script src="perlin.js"></script>
     <script src="main.js"></script>

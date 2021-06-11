@@ -1,6 +1,9 @@
 let mainScene;
 const infoDiv = document.getElementById("infoDiv");
 const backButton = document.getElementById("backButton");
+let sensitivity = 1;
+const sensitivitySlider = document.getElementById("sensitivitySlider");
+const fancyLight = document.getElementById("fancyLight");
 
 function angleDifference(angle1, angle2) {
     const diff = ((angle2 - angle1 + Math.PI) % (Math.PI * 2)) - Math.PI;
@@ -47,6 +50,7 @@ class MainScene extends Scene3D {
         this.third.load.preload("apprentice", "./assets/apprentice.jpeg");
         this.third.load.preload("tj", "./assets/tj.png");
         this.shaders = [];
+        this.lights = [];
         this.anims = [];
         const woodTexture = await this.third.load.texture("assets/wood.jpeg");
         const stoneTexture = await this.third.load.texture("assets/stone.jpeg");
@@ -386,11 +390,13 @@ float cnoise(vec3 P){
                                 }
                             });
                         }
-                        if (attrs.model === "lantern" && params["Fancy Lights"]) {
+                        if (attrs.model === "lantern") {
                             const theLight = this.third.lights.pointLight({ x: relativeCoords.x, z: relativeCoords.x, y: modelAttrs.elevation, intensity: 1, color: 'orange' });
                             // this.third.lights.helper.pointLightHelper(theLight);
                             theLight.position.set(relativeCoords.y, modelAttrs.elevation, relativeCoords.x);
                             theLight.castShadow = true;
+                            theLight.visible = false;
+                            this.lights.push(theLight);
                             /*const d = 4;
                             theLight.shadow.camera.top = d;
                             theLight.shadow.camera.bottom = -d;
@@ -452,6 +458,7 @@ float cnoise(vec3 P){
         this.firstPersonControls.theta = 180;
         this.input.on("pointerdown", () => {
             this.input.mouse.requestPointerLock();
+            document.getElementById("helpWindow").style.display = "none";
             if (this.input.mouse.locked) {
                 if (this.input.mousePointer.rightButtonDown() && this.targetWeaponPositions.length === 0 && this.targetWeaponRotations.length === 0) {
                     this.targetWeaponRotations.push({ x: -0.85, y: 0, z: 0.2, time: 200, progress: 0 });
@@ -486,7 +493,7 @@ float cnoise(vec3 P){
         });
         this.input.on("pointermove", pointer => {
             if (this.input.mouse.locked && infoDiv.style.display === "none") {
-                this.firstPersonControls.update(pointer.movementX * 0.5, pointer.movementY * 0.5);
+                this.firstPersonControls.update(pointer.movementX * 0.5 * sensitivity, pointer.movementY * 0.5 * sensitivity);
             }
         });
         this.events.on("update", () => {
@@ -519,11 +526,19 @@ float cnoise(vec3 P){
         //console.log(this.player.children[1].position, this.player.position);
         this.delta = delta;
         this.timeScale = delta / 16.66;
+        sensitivity = +sensitivitySlider.value;
         this.shaders.forEach(shader => {
             shader.uniforms.stepX.value += 0.0025 * this.timeScale;
             shader.uniforms.stepY.value += 0.0025 * this.timeScale;
             shader.uniforms.stepZ.value += 0.0025 * this.timeScale;
         });
+        this.lights.forEach(light => {
+            if (fancyLight.checked) {
+                light.visible = true;
+            } else {
+                light.visible = false;
+            }
+        })
         this.anims.forEach(anim => {
             anim.mesh.position.x += anim.transform.position.x * this.timeScale;
             anim.mesh.position.y += anim.transform.position.y * this.timeScale;
@@ -646,6 +661,9 @@ const config = {
 backButton.onclick = () => {
     infoDiv.style.display = "none";
     mainScene.input.mouse.requestPointerLock();
+}
+document.getElementById("help").onclick = () => {
+    document.getElementById("helpWindow").style.display = "block";
 }
 window.addEventListener('load', () => {
     enable3d(() => new Phaser.Game(config)).withPhysics('./lib');
